@@ -23,110 +23,129 @@
   </head>
   <body>
     <div class="container">
-      <div class="row">
-        <div class="col-6">
-          <h1>Curitiba</h1>
-          <small>
-            <span id="current-week-day">Sunday</span> |
-            <span id="current-date">27/09</span> |
-            <span class="btn time"
-              ><a href="" id="current-time"> 15:30 </a></span
-            ></small
-          >
-        </div>
-        <div class="col-6 search-city">
-          <form>
-            <label for="search-city">
-              <i class="fas fa-search search-icon"></i>
-            </label>
-            <input
-              type="text"
-              placeholder="Search city"
-              autocomplete="off"
-              autofocus="on"
-              id="search-city"
-            />
-          </form>
-          <button class="current-location">Current Location</button>
-        </div>
-      </div>
-      <div class="row weather">
-        <div class="col sky-and-temperature">
-          <div class="row">
-            <div class="col-4">
-              <i class="fas fa-cloud-sun sky-icon"></i>
-            </div>
-            <div class="col-8">
-              <small class="sky-icon-description" id="description"
-                >Partly cloudy</small
-              >
-              <h3>
-                <span id="temperature">19°C</span>
-                <i class="fas fa-thermometer-half"></i>
-                <small class="celsius-fahrenheit">
-                  <a href="#" id="celsius">°C</a> |
-                  <a href="#" id="fahrenheit">°F</a>
-                </small>
-              </h3>
-            </div>
+      <div class="main">
+        <div class="row">
+          <div class="col-6">
+            <h1>Curitiba</h1>
+            <small>
+              <span id="current-week-day">Sunday</span> |
+              <span id="current-date">27/09</span> |
+              <span class="btn time"
+                ><a href="" id="current-time"> 15:30 </a></span
+              ></small
+            >
+          </div>
+          <div class="col-6 search-city">
+            <form>
+              <label for="search-city">
+                <i class="fas fa-search search-icon"></i>
+              </label>
+              <input
+                type="text"
+                placeholder="Search city"
+                autocomplete="off"
+                autofocus="on"
+                id="search-city"
+              />
+            </form>
+            <button class="current-location">Current Location</button>
           </div>
         </div>
-        <div class="col">
-          <ul>
-            <li>Humidity: <span id="humidity">82</span>%</li>
-            <li>Wind: <span id="wind">11</span>km/h</li>
-          </ul>
+        <div class="row weather">
+          <div class="col sky-and-temperature">
+            <div class="row">
+              <div class="col-4">
+                <i class="fas fa-cloud-sun sky-icon"></i>
+              </div>
+              <div class="col-8">
+                <small class="sky-icon-description" id="description"
+                  >Partly cloudy</small
+                >
+                <h3>
+                  <span id="temperature">19°C</span>
+                  <i class="fas fa-thermometer-half"></i>
+                  <small class="celsius-fahrenheit">
+                    <a href="#" id="celsius">°C</a> |
+                    <a href="#" id="fahrenheit">°F</a>
+                  </small>
+                </h3>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <ul>
+              <li>Humidity: <span id="humidity">82</span>%</li>
+              <li>Wind: <span id="wind">11</span>km/h</li>
+            </ul>
+          </div>
+        </div>
+        <hr />
+        <div class="row mt-2">
+          <div class="col btn other-days first-day">
+            <a href="">
+              <h6>Monday</h6>
+              <i class="fas fa-cloud-sun sky-icon"></i>
+              <p class="other-days-temperature">
+                <small>
+                  15°C/20°C <i class="fas fa-thermometer-half"></i
+                ></small>
+              </p>
+            </a>
+          </div>
+          <div class="col btn other-days second-day">
+            <a href="">
+              <h6>Tuesday</h6>
+              <i class="fas fa-cloud-sun sky-icon"></i>
+              <p class="other-days-temperature">
+                <small>
+                  15°C/20°C <i class="fas fa-thermometer-half"></i
+                ></small>
+              </p>
+            </a>
+          </div>
+          <div class="col btn other-days third-day">
+            <a href="">
+              <h6>Wednesday</h6>
+              <i class="fas fa-cloud-sun sky-icon"></i>
+              <p class="other-days-temperature">
+                <small>
+                  15°C/20°C <i class="fas fa-thermometer-half"></i
+                ></small>
+              </p>
+            </a>
+          </div>
+          <div class="col btn other-days fourth-day">
+            <a href=""
+              ><h6>Thirsday</h6>
+              <i class="fas fa-cloud-sun sky-icon"></i>
+              <p class="other-days-temperature">
+                <small>
+                  15°C/20°C <i class="fas fa-thermometer-half"></i
+                ></small></p
+            ></a>
+          </div>
+          <div class="col btn other-days fith-day">
+            <a href="">
+              <h6>Friday</h6>
+              <i class="fas fa-cloud-sun sky-icon"></i>
+              <p class="other-days-temperature">
+                <small>
+                  15°C/20°C <i class="fas fa-thermometer-half"></i
+                ></small>
+              </p>
+            </a>
+          </div>
         </div>
       </div>
-      <hr />
-      <div class="row mt-2">
-        <div class="col btn other-days first-day">
-          <a href="">
-            <h6>Monday</h6>
-            <i class="fas fa-cloud-sun sky-icon"></i>
-            <p class="other-days-temperature">
-              <small> 15°C/20°C <i class="fas fa-thermometer-half"></i></small>
-            </p>
-          </a>
-        </div>
-        <div class="col btn other-days second-day">
-          <a href="">
-            <h6>Tuesday</h6>
-            <i class="fas fa-cloud-sun sky-icon"></i>
-            <p class="other-days-temperature">
-              <small> 15°C/20°C <i class="fas fa-thermometer-half"></i></small>
-            </p>
-          </a>
-        </div>
-        <div class="col btn other-days third-day">
-          <a href="">
-            <h6>Wednesday</h6>
-            <i class="fas fa-cloud-sun sky-icon"></i>
-            <p class="other-days-temperature">
-              <small> 15°C/20°C <i class="fas fa-thermometer-half"></i></small>
-            </p>
-          </a>
-        </div>
-        <div class="col btn other-days fourth-day">
-          <a href=""
-            ><h6>Thirsday</h6>
-            <i class="fas fa-cloud-sun sky-icon"></i>
-            <p class="other-days-temperature">
-              <small>
-                15°C/20°C <i class="fas fa-thermometer-half"></i
-              ></small></p
-          ></a>
-        </div>
-        <div class="col btn other-days fith-day">
-          <a href="">
-            <h6>Friday</h6>
-            <i class="fas fa-cloud-sun sky-icon"></i>
-            <p class="other-days-temperature">
-              <small> 15°C/20°C <i class="fas fa-thermometer-half"></i></small>
-            </p>
-          </a>
-        </div>
-      </div>
+      <footer>
+        <a
+          href="https://github.com/lorenakari/Weather-App"
+          class="github-link"
+          target="blank"
+          >Open-source code</a
+        >
+        by Lorena Alvarez
+      </footer>
     </div>
     <script src="src/index.js"></script>
   </body>
