@@ -13,6 +13,8 @@ function displayCityAndWeather(response) {
   skyIconElement.setAttribute("src", `https://openweathermap.org/img/wn/${skyIcon}@2x.png`);
   skyIconElement.setAttribute("alt", weatherDescription);
 
+  celsiusTemperature = Math.round(response.data.main.temp);
+
   let temperature = response.data.main.temp;
   let tempElement = document.querySelector("#temperature");
   tempElement.innerHTML = `${Math.round(temperature)}°C`
@@ -97,29 +99,23 @@ function displayCurrentTime (currentDayAndTime) {
   currentTimeA.innerHTML = currentTime;
 }
 
-function convertToCelsius() {
-  let celsiusTemperature = 19;
+function convertToCelsius(event) {
+  event.preventDefault();
+
   let temperatureElement = document.querySelector("#temperature");
 
   temperatureElement.innerHTML = `${celsiusTemperature}°C`;
 }
 
-function convertToFarenheit() {
-  let fahrenheitTemperature = 66;
+function convertToFarenheit(event) {
+  event.preventDefault();
+  let fahrenheitTemperature = Math.round((celsiusTemperature * 9) /5 + 32);
   let temperatureElement = document.querySelector("#temperature");
 
   temperatureElement.innerHTML = `${fahrenheitTemperature}°F`
 }
 
-//Task
-let searchCityForm = document.querySelector(".search-city");
-searchCityForm.addEventListener("submit", handleSubmit);
-
-search("São Paulo");
-
-//Bonus feature
-let currentLocationButton = document.querySelector(".current-location");
-currentLocationButton.addEventListener("click", getCurrentLocation);
+let celsiusTemperature = null;
 
 let currentDayAndTime = new Date();
 displayCurrentWeekDay(currentDayAndTime);
@@ -130,3 +126,11 @@ let fahrenheitLink = document.querySelector("#fahrenheit");
 fahrenheitLink.addEventListener("click", convertToFarenheit)
 let celsiusLink = document.querySelector("#celsius");
 celsiusLink.addEventListener("click", convertToCelsius);
+
+search("São Paulo");
+
+let searchCityForm = document.querySelector(".search-city");
+searchCityForm.addEventListener("submit", handleSubmit);
+
+let currentLocationButton = document.querySelector(".current-location");
+currentLocationButton.addEventListener("click", getCurrentLocation);
