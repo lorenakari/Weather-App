@@ -1,6 +1,4 @@
 function displayCityAndWeather(response) {
-console.log(response)
-
   let city = response.data.name
 
   let h1 = document.querySelector("h1");
@@ -9,6 +7,11 @@ console.log(response)
   let weatherDescription = response.data.weather[0].main;
   let weatherDescriptionElement = document.querySelector("#description");
   weatherDescriptionElement.innerHTML = weatherDescription;  
+
+  let skyIcon = response.data.weather[0].icon;
+  let skyIconElement = document.querySelector("#sky-icon");
+  skyIconElement.setAttribute("src", `https://openweathermap.org/img/wn/${skyIcon}@2x.png`);
+  skyIconElement.setAttribute("alt", weatherDescription);
 
   let temperature = response.data.main.temp;
   let tempElement = document.querySelector("#temperature");

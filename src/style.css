@@ -116,9 +116,9 @@ footer {
   margin-top: 10px;
 }
 
-.sky-icon {
-  font-size: 60px;
-  color: #015d88;
+#sky-icon {
+  margin-top: -25px;
+  width: 110px;
 }
 
 .celsius-fahrenheit {
