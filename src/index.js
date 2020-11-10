@@ -28,6 +28,40 @@ function displayCityAndWeather(response) {
   windElement.innerHTML = Math.round(windSpeed);
 }
 
+function returnWeekDay(date) {
+  let weekDayNumber = date.getDay();
+  let weekDay = daysOfTheWeek[weekDayNumber];
+
+  return weekDay;
+}
+
+function  displayForecast(response) {
+  let forecastElement = document.querySelector("#forecast");
+  forecastElement.innerHTML = null;
+  let forecast = null;
+
+  for (let index = 0; index < 36; index ++) {
+  index = index + 7;
+  forecast = response.data.list[index];
+  forecastElement.innerHTML += `
+    <div class="col btn forecast">
+      <a href="">
+        <h6> ${returnWeekDay(new Date(forecast.dt_txt))} </h6>
+        <img src="https://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" 
+          class="forecast-icon"alt=""
+        ></img>
+        <p id="">
+          <small>${Math.round(forecast.main.temp_min)}°C/
+            ${Math.round(forecast.main.temp_max)}°C 
+          <i class="fas fa-thermometer-half"></i>
+          </small>
+        </p>
+      </a>
+    </div>
+  `;
+  }
+}
+
 function search(city) {
   let apiKey = "a9764671face45f313421331b3c30f46";
   let unit = "metric";
@@ -35,6 +69,11 @@ function search(city) {
   let apiUrl = `${apiEndpoint}?q=${city}&appid=${apiKey}&units=${unit}`
 
   axios.get(apiUrl).then(displayCityAndWeather);
+
+  apiEndpoint = "https://api.openweathermap.org/data/2.5/forecast"
+  apiUrl = `${apiEndpoint}?q=${city}&appid=${apiKey}&units=${unit}`;
+
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function handleSubmit(event) {
@@ -59,13 +98,12 @@ function getCurrentLocation() {
 navigator.geolocation.getCurrentPosition(handleCurrentLocation);  
 }
 
-function displayCurrentWeekDay (currentDayAndTime) {
-  let weekDayNumber = currentDayAndTime.getDay();
-  let daysOfTheWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-  let currentWeekDay = daysOfTheWeek[weekDayNumber];
+function displayCurrentWeekDay (date) {
+  let weekDayNumber = date.getDay();
+  let weekDay = daysOfTheWeek[weekDayNumber];
   
   let currentWeekDaySpan = document.querySelector("#current-week-day");
-  currentWeekDaySpan.innerHTML = currentWeekDay;
+  currentWeekDaySpan.innerHTML = weekDay;
 }
 
 function displayCurrentDate (currentDayAndTime) {
@@ -116,6 +154,8 @@ function convertToFarenheit(event) {
 }
 
 let celsiusTemperature = null;
+
+let daysOfTheWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
 let currentDayAndTime = new Date();
 displayCurrentWeekDay(currentDayAndTime);

@@ -135,7 +135,7 @@ footer {
   font-weight: 800;
 }
 
-.other-days {
+.forecast {
   text-align: center;
   padding: 10px 0;
   padding-top: 10px;
@@ -143,14 +143,14 @@ footer {
   margin-top: 10px;
   transition: all 200ms ease-in-out;
 }
-.other-days:hover {
+.forecast:hover {
   background: #fff;
   cursor: pointer;
   box-shadow: 8px 5px 5px #4a6471;
 }
 
-.other-days .sky-icon {
-  font-size: 40px;
+.forecast-icon {
+  margin: -15px;
 }
 
 .other-days-temperature {
