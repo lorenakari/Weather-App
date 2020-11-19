@@ -28,35 +28,104 @@ function displayCityAndWeather(response) {
   windElement.innerHTML = Math.round(windSpeed);
 }
 
-function returnWeekDay(date) {
+function getWeekDay(date) {
   let weekDayNumber = date.getDay();
   let weekDay = daysOfTheWeek[weekDayNumber];
 
   return weekDay;
 }
 
+function findMinTemp (response, index) {
+  let minTemps = [];
+    if (index === 8) {
+  for (let i = 8; i < 16; i++){
+    let minTemp = response.data.list[i].main.temp_min;
+    minTemps.push(minTemp);
+    smallestMinTemp = Math.min(...minTemps);
+    }
+    return smallestMinTemp;
+  }
+    if (index === 16) {
+  for (let i = 16; i < 24; i++){
+    let minTemp = response.data.list[i].main.temp_min;
+    minTemps.push(minTemp);
+    smallestMinTemp = Math.min(...minTemps);
+      }
+      return smallestMinTemp;
+    }
+    if (index === 24) {
+  for (let i = 24; i < 32; i++){
+    let minTemp = response.data.list[i].main.temp_min;
+    minTemps.push(minTemp); 
+    smallestMinTemp = Math.min(...minTemps);
+    }
+    return smallestMinTemp;
+  }
+    if (index === 32) {
+  for (let i = 32; i < 40; i++){
+    let minTemp = response.data.list[i].main.temp_min;
+    minTemps.push(minTemp);
+    smallestMinTemp = Math.min(...minTemps);
+    }
+    return smallestMinTemp;
+    }
+}
+
+function findMaxTemp (response, index) {
+    let maxTemps = [];
+    if (index === 8) {
+  for (let i = 8; i < 16; i++){
+    let maxTemp = response.data.list[i].main.temp_max;
+    maxTemps.push(maxTemp);
+    highestMaxTemp = Math.max(...maxTemps);
+    }
+    return highestMaxTemp;
+  }
+    if (index === 16) {
+  for (let i = 16; i < 24; i++){
+    let maxTemp = response.data.list[i].main.temp_max;
+    maxTemps.push(maxTemp);
+    highestMaxTemp = Math.max(...maxTemps);
+      }
+      return highestMaxTemp;
+    }
+    if (index === 24) {
+  for (let i = 24; i < 32; i++){
+    let maxTemp = response.data.list[i].main.temp_max;
+    maxTemps.push(maxTemp); 
+    highestMaxTemp = Math.max(...maxTemps);
+    }
+    return highestMaxTemp;
+  }
+    if (index === 32) {
+  for (let i = 32; i < 40; i++){
+    let maxTemp = response.data.list[i].main.temp_max;
+    maxTemps.push(maxTemp);
+    highestMaxTemp = Math.max(...maxTemps);
+    }
+    return highestMaxTemp;
+    }
+}
+
 function  displayForecast(response) {
   let forecastElement = document.querySelector("#forecast");
   forecastElement.innerHTML = null;
   let forecast = null;
-
-  for (let index = 0; index < 36; index ++) {
-  index = index + 7;
+  for (let index = 0; index < 25; index) {
+  index = index + 8;
   forecast = response.data.list[index];
+
   forecastElement.innerHTML += `
-    <div class="col btn forecast">
-      <a href="">
-        <h6> ${returnWeekDay(new Date(forecast.dt_txt))} </h6>
+    <div class="col forecast">
+        <h6> ${getWeekDay(new Date(forecast.dt_txt))} </h6>
         <img src="https://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" 
           class="forecast-icon"alt=""
         ></img>
         <p id="">
-          <small>${Math.round(forecast.main.temp_min)}°C/
-            ${Math.round(forecast.main.temp_max)}°C 
+          <small>${Math.round(findMinTemp(response, index))}°C/${Math.round(findMaxTemp(response, index))}°C 
           <i class="fas fa-thermometer-half"></i>
           </small>
         </p>
-      </a>
     </div>
   `;
   }

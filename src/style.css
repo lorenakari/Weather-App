@@ -1,23 +1,13 @@
 h1,
 h3,
-h6 {
+h6,
+small {
   font-weight: 600;
 }
 
 h1 {
   font-size: 45px;
   margin-bottom: 0;
-}
-
-small {
-  font-weight: 600;
-}
-
-a {
-  color: #035377;
-}
-a:hover {
-  text-decoration: none;
 }
 
 input {
@@ -61,23 +51,10 @@ footer {
   opacity: 0.9;
   max-width: 650px;
   max-height: 600px;
-  padding: 2% 4%;
+  padding: 2% 4% 0;
   border-radius: 10px;
   color: #023b54;
   font-family: "Nunito", sans-serif;
-}
-
-.time {
-  padding: 2px 3px;
-  border: solid 1px #035377;
-  border-radius: 7px;
-  font-weight: 800;
-  transition: all 100ms ease-in-out;
-}
-.time:hover {
-  background: #fff;
-  cursor: pointer;
-  box-shadow: 8px 5px 5px #4a6471;
 }
 
 .search-city {
@@ -108,10 +85,7 @@ footer {
   font-weight: 500;
 }
 
-.weather {
-  margin-top: 10px;
-}
-
+.weather,
 .sky-and-temperature {
   margin-top: 10px;
 }
@@ -128,6 +102,7 @@ footer {
 #celsius,
 #fahrenheit {
   transition: all 200ms ease-in-out;
+  color: #015d88;
 }
 #celsius:hover,
 #fahrenheit:hover {
@@ -137,20 +112,14 @@ footer {
 
 .forecast {
   text-align: center;
-  padding: 10px 0;
-  padding-top: 10px;
+  padding: 20px 0 10px;
   border-radius: 20px;
-  margin-top: 10px;
   transition: all 200ms ease-in-out;
-}
-.forecast:hover {
-  background: #fff;
-  cursor: pointer;
-  box-shadow: 8px 5px 5px #4a6471;
 }
 
 .forecast-icon {
-  margin: -15px;
+  margin: -20px 0 -15px;
+  width: 90px;
 }
 
 .other-days-temperature {
