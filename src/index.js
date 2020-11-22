@@ -35,85 +35,117 @@ function getWeekDay(date) {
   return weekDay;
 }
 
-function findMinTemp (response, index) {
+function getMinTemp (response, newDaysIndexes, index) {
   let minTemps = [];
-    if (index === 8) {
-  for (let i = 8; i < 16; i++){
+
+  if (newDaysIndexes[0] === index) {
+  for (let i = newDaysIndexes[0]; i < newDaysIndexes[1]; i++) {
     let minTemp = response.data.list[i].main.temp_min;
     minTemps.push(minTemp);
     smallestMinTemp = Math.min(...minTemps);
     }
-    return smallestMinTemp;
-  }
-    if (index === 16) {
-  for (let i = 16; i < 24; i++){
-    let minTemp = response.data.list[i].main.temp_min;
-    minTemps.push(minTemp);
-    smallestMinTemp = Math.min(...minTemps);
-      }
       return smallestMinTemp;
-    }
-    if (index === 24) {
-  for (let i = 24; i < 32; i++){
-    let minTemp = response.data.list[i].main.temp_min;
-    minTemps.push(minTemp); 
-    smallestMinTemp = Math.min(...minTemps);
-    }
-    return smallestMinTemp;
   }
-    if (index === 32) {
-  for (let i = 32; i < 40; i++){
+  if (newDaysIndexes[1] === index) {
+  for (let i = newDaysIndexes[1]; i < newDaysIndexes[2]; i++) {
     let minTemp = response.data.list[i].main.temp_min;
     minTemps.push(minTemp);
     smallestMinTemp = Math.min(...minTemps);
     }
-    return smallestMinTemp;
+      return smallestMinTemp;
+  }
+    if (newDaysIndexes[2] === index) {
+  for (let i = newDaysIndexes[2]; i < newDaysIndexes[3]; i++) {
+    let minTemp = response.data.list[i].main.temp_min;
+    minTemps.push(minTemp);
+    smallestMinTemp = Math.min(...minTemps);
     }
+      return smallestMinTemp;
+  }
+  if (newDaysIndexes[3] === index) {
+  for (let i = newDaysIndexes[3]; i < newDaysIndexes[4]; i++) {
+    let minTemp = response.data.list[i].main.temp_min;
+    minTemps.push(minTemp);
+    smallestMinTemp = Math.min(...minTemps);
+    }
+      return smallestMinTemp;
+  }
+  if (newDaysIndexes[4] === index) {
+  for (let i = newDaysIndexes[4]; i < 40; i++) {
+    let minTemp = response.data.list[i].main.temp_min;
+    minTemps.push(minTemp);
+    smallestMinTemp = Math.min(...minTemps);
+    }
+      return smallestMinTemp;
+  }
 }
 
-function findMaxTemp (response, index) {
-    let maxTemps = [];
-    if (index === 8) {
-  for (let i = 8; i < 16; i++){
+function getMaxTemp (response, newDaysIndexes, index) {
+  let maxTemps = [];
+
+  if (newDaysIndexes[0] === index) {
+  for (let i = newDaysIndexes[0]; i < newDaysIndexes[1]; i++) {
     let maxTemp = response.data.list[i].main.temp_max;
     maxTemps.push(maxTemp);
     highestMaxTemp = Math.max(...maxTemps);
     }
-    return highestMaxTemp;
-  }
-    if (index === 16) {
-  for (let i = 16; i < 24; i++){
-    let maxTemp = response.data.list[i].main.temp_max;
-    maxTemps.push(maxTemp);
-    highestMaxTemp = Math.max(...maxTemps);
-      }
       return highestMaxTemp;
-    }
-    if (index === 24) {
-  for (let i = 24; i < 32; i++){
-    let maxTemp = response.data.list[i].main.temp_max;
-    maxTemps.push(maxTemp); 
-    highestMaxTemp = Math.max(...maxTemps);
-    }
-    return highestMaxTemp;
   }
-    if (index === 32) {
-  for (let i = 32; i < 40; i++){
+  if (newDaysIndexes[1] === index) {
+  for (let i = newDaysIndexes[1]; i < newDaysIndexes[2]; i++) {
     let maxTemp = response.data.list[i].main.temp_max;
     maxTemps.push(maxTemp);
     highestMaxTemp = Math.max(...maxTemps);
     }
-    return highestMaxTemp;
+      return highestMaxTemp;
+  }
+    if (newDaysIndexes[2] === index) {
+  for (let i = newDaysIndexes[2]; i < newDaysIndexes[3]; i++) {
+    let maxTemp = response.data.list[i].main.temp_max;
+    maxTemps.push(maxTemp);
+    highestMaxTemp = Math.max(...maxTemps);
     }
+      return highestMaxTemp;
+  }
+  if (newDaysIndexes[3] === index) {
+  for (let i = newDaysIndexes[3]; i < newDaysIndexes[4]; i++) {
+    let maxTemp = response.data.list[i].main.temp_max;
+    maxTemps.push(maxTemp);
+    highestMaxTemp = Math.max(...maxTemps);
+    }
+      return highestMaxTemp;
+  }
+  if (newDaysIndexes[4] === index) {
+  for (let i = newDaysIndexes[4]; i < 40; i++) {
+    let maxTemp = response.data.list[i].main.temp_max;
+    maxTemps.push(maxTemp);
+    highestMaxTemp = Math.max(...maxTemps);
+    }
+      return highestMaxTemp;
+  }
 }
 
 function  displayForecast(response) {
   let forecastElement = document.querySelector("#forecast");
   forecastElement.innerHTML = null;
   let forecast = null;
-  for (let index = 0; index < 25; index) {
-  index = index + 8;
+
+  let forecasts = response.data.list;
+  let newDaysIndexes = [];
+  let newDays = forecasts.map(forecast => {return forecast.dt_txt.includes("00:00:00")});
+  let value = true;
+  let idx = newDays.indexOf(value);
+  while (idx != -1) {
+    newDaysIndexes.push(idx);
+    idx = newDays.indexOf(value, idx + 1);
+  }
+
+  for (let index = 0; index < 40; index++) {
   forecast = response.data.list[index];
+  
+  if (forecast.dt_txt.includes("00:00:00") === false) {
+    continue;
+  };
 
   forecastElement.innerHTML += `
     <div class="col forecast">
@@ -122,7 +154,7 @@ function  displayForecast(response) {
           class="forecast-icon"alt=""
         ></img>
         <p id="">
-          <small>${Math.round(findMinTemp(response, index))}°C/${Math.round(findMaxTemp(response, index))}°C 
+          <small>${Math.round(getMinTemp(response, newDaysIndexes, index))}°C/${Math.round(getMaxTemp(response, newDaysIndexes, index))}°C 
           <i class="fas fa-thermometer-half"></i>
           </small>
         </p>
@@ -161,6 +193,11 @@ let unit = "metric"
 let apiUrl = `${apiEndpoint}?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${unit}`;
 
 axios.get(apiUrl).then(displayCityAndWeather);
+
+apiEndpoint = "https://api.openweathermap.org/data/2.5/forecast"
+apiUrl = `${apiEndpoint}?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${unit}`;
+
+axios.get(apiUrl).then(displayForecast);
 }
 
 function getCurrentLocation() {
