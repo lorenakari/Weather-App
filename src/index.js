@@ -148,12 +148,12 @@ function  displayForecast(response) {
   };
 
   forecastElement.innerHTML += `
-    <div class="col forecast">
+    <div class="forecast-card">
         <h6> ${getWeekDay(new Date(forecast.dt_txt))} </h6>
         <img src="https://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" 
           class="forecast-icon"alt=""
         ></img>
-        <p id="">
+        <p class="forecast-temperature" id="">
           <small>${Math.round(getMinTemp(response, newDaysIndexes, index))}°C/${Math.round(getMaxTemp(response, newDaysIndexes, index))}°C 
           <i class="fas fa-thermometer-half"></i>
           </small>
